@@ -32,4 +32,7 @@ Try 10 real-world programs on NEUZZ. Check setup details at programs/[program na
 ## Contact
 Feel free to send me email about Neuzz. dongdong at cs.columbia.edu
 
+## Edit
+Added a variable which is linearly dependent on the file size of the target program. These additions were added to nn.py
+
 
