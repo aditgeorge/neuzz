@@ -38,6 +38,14 @@ SPLIT_RATIO = len(seed_list)
 # get binary argv
 argvv = sys.argv[1:]
 
+# adaptive variable
+filesize=os.stat(argvv[0]).st_size
+adapt_var=int(filesize/10000)
+if adapt_var >600:
+    adapt_var=600
+print("========================")
+print("File size:", filesize, " Adaptive Variable:",adapt_var)
+print("========================")
 
 # process training data from afl raw data
 def process_data():
@@ -343,9 +351,11 @@ def build_model():
     batch_size = 32
     num_classes = MAX_BITMAP_SIZE
     epochs = 50
-
+    print("===============================")
+    print("Model layer size:",3500+adapt_var)
+    print("==============================")
     model = Sequential()
-    model.add(Dense(4096, input_dim=MAX_FILE_SIZE))
+    model.add(Dense(3500+adapt_var, input_dim=MAX_FILE_SIZE))
     model.add(Activation('relu'))
     model.add(Dense(num_classes))
     model.add(Activation('sigmoid'))
